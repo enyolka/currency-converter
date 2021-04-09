@@ -19,7 +19,7 @@ class ExchangeActivity : AppCompatActivity() {
     internal lateinit var buttonExchange: Button
     internal lateinit var result: TextView
 
-    internal var data:  Array<Pair<String, Double>> = emptyArray()
+    internal var data:  Array<Pair<String, Double>> = arrayOf(Pair("PLN", 1.0))
     private lateinit var queue: RequestQueue
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,6 @@ class ExchangeActivity : AppCompatActivity() {
 
         makeRequest("A")
         makeRequest("B")
-        setSpinner()
 
         this.buttonExchange.setOnClickListener {
             if ((value.text.toString()).matches("[0|\\d*]+\\.?\\d*".toRegex())) {
@@ -47,13 +46,11 @@ class ExchangeActivity : AppCompatActivity() {
     }
 
     private fun setSpinner() {
-        var arr = arrayOf("USD", "PLN", "SEK")
-        var arr2 = data.map { it.first }.toTypedArray()
-//
-//        spinnerIn.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arr)//data?.map { it.first }.toTypedArray())
-        var adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arr)//data?.map { it.first }.toTypedArray())
-        spinnerIn.adapter = adapter
-        spinnerOut.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arr)//data?.map { it.first }.toTypedArray())
+        var arr = data.map { it.first }.toTypedArray()
+
+        spinnerIn.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arr)
+        spinnerOut.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arr)
+
     }
 
     private fun calculate() : Double {
@@ -65,7 +62,7 @@ class ExchangeActivity : AppCompatActivity() {
             if (item.first == spinnerOut.selectedItem)
                 curr_to = item.second
         }
-        return round(((value.text.toString()).toDouble()) * curr_to / curr_from * 100) / 100
+        return round(((value.text.toString()).toDouble()) * curr_from / curr_to * 100) / 100
     }
 
     private fun makeRequest(table: String) {
@@ -76,6 +73,7 @@ class ExchangeActivity : AppCompatActivity() {
         val goldRequest = JsonArrayRequest ( Request.Method.GET, url, null,
             Response.Listener { response ->
                 loadData(response)
+                setSpinner()
             },
             Response.ErrorListener { println("Error!!!!!!!") }
         )
