@@ -8,79 +8,61 @@
 
     <LinearLayout
         android:id="@+id/layoutIn"
-        android:layout_width="120sp"
+        android:layout_width="150sp"
         android:layout_height="match_parent"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="230dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
             android:id="@+id/spinnerIn"
-            android:layout_width="120sp"
+            android:layout_width="match_parent"
             android:layout_height="45sp"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:padding="3sp"
             android:scrollbarSize="3dp"
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutOut"
-        android:layout_width="120sp"
+        android:layout_width="150sp"
         android:layout_height="match_parent"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="320dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
             android:id="@+id/spinnerOut"
-            android:layout_width="120sp"
+            android:layout_width="match_parent"
             android:layout_height="45sp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
+            android:gravity="center"
             android:scrollbarSize="3dp"
             android:spinnerMode="dropdown" />
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/valueText"
-        android:layout_width="150sp"
-        android:layout_height="45sp"
-        android:layout_marginTop="170dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:text="przelicz na:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valueText" />
 
     <Button
         android:id="@+id/buttonExchangeRates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="460dp"
         android:text="Przelicz"
         app:backgroundTint="#6393BD"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valueText" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/exchangeResultText"
@@ -92,5 +74,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonExchangeRates" />
+
+
+    <EditText
+        android:id="@+id/valueText"
+        android:layout_width="135dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="124dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
