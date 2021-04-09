@@ -16,10 +16,19 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/currencySign"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="PLN" />
+
+            <TextView
                 android:id="@+id/todayRate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/todayRateText" />
@@ -28,7 +37,7 @@
                 android:id="@+id/yesterdayRate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="20sp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/yesterdayRateText" />
@@ -45,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250sp"
                 android:layout_marginTop="30sp"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
             </com.github.mikephil.charting.charts.LineChart>
         </LinearLayout>
