@@ -19,6 +19,7 @@ import kotlin.collections.ArrayList
 import kotlin.reflect.typeOf
 
 class HistoricRatesActivity : AppCompatActivity() {
+    internal lateinit var currencySign: TextView
     internal lateinit var todayRate: TextView
     internal lateinit var yesterdayRate: TextView
     internal lateinit var lineChart_week: LineChart
@@ -35,15 +36,18 @@ class HistoricRatesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historic_rates)
 
+        currencySign= findViewById(R.id.currencySign)
         todayRate = findViewById(R.id.todayRate)
         yesterdayRate = findViewById(R.id.yesterdayRate)
         lineChart_week = findViewById(R.id.historicRatesChartWeek)
         lineChart_month = findViewById(R.id.historicRatesChartMonth)
 
-        currencyCode = intent.getStringExtra("currencyCode") ?: "USD"
+        currencyCode = intent.getStringExtra("currencyCode") ?: "PLN"
         tableType = intent.getStringExtra("tableType") ?: "A"
 //        val pos = intent.getIntExtra("positionInArray", 0)
 //        currency = TemporaryData.getDataSet()[pos]
+
+        currencySign.text = currencyCode.toString()
         getData()
     }
 
@@ -102,18 +106,20 @@ class HistoricRatesActivity : AppCompatActivity() {
         }
 
         if (entries_week.size > 1) {
-            lineChart_week.data = LineData(LineDataSet(entries_week, "Kurs (wartość w PLN"))
+            lineChart_week.data = LineData(LineDataSet(entries_week, "Kurs (wartość w PLN)"))
             lineChart_week.getDescription().setText("Kurs %s z ostatnich 7 dni".format(/*currency.*/currencyCode))
         } else {
             lineChart_week.data = LineData(LineDataSet(entries_month.takeLast(2), "Kurs (wartość w PLN"))
             lineChart_week.getDescription().setText("Kurs %s z ostatnich 2 zapisów (brak danych dla ostatniego tygodnia)".format(/*currency.*/currencyCode))
         }
         lineChart_week.xAxis.valueFormatter = IndexAxisValueFormatter(historicRates.map { it.first.substring(5) }.toTypedArray())
+        lineChart_week.animateX(300)
         lineChart_week.invalidate()
 
-        lineChart_month.data = LineData(LineDataSet(entries_month, "Kurs (wartość w PLN"))
+        lineChart_month.data = LineData(LineDataSet(entries_month, "Kurs (wartość w PLN)"))
         lineChart_month.getDescription().setText("Kurs %s z ostatnich 30 dni".format(/*currency.*/currencyCode))
         lineChart_month.xAxis.valueFormatter = IndexAxisValueFormatter(historicRates.map { it.first.substring(5) }.toTypedArray())
+        lineChart_month.animateX(900)
         lineChart_month.invalidate()
     }
 }
