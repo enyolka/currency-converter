@@ -74,9 +74,10 @@ class GoldActivity : AppCompatActivity() {
             entries.add(Entry(idx.toFloat(), item.second.toFloat()))
         }
 
-        lineChart.data = LineData(LineDataSet(entries, "Kurs (wartość w PLN"))
+        lineChart.data = LineData(LineDataSet(entries, "Kurs (wartość w PLN)"))
         lineChart.getDescription().setText("Kurs złota z ostatnich 30 dni")
         lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(dataSet.map { it.first.substring(5) }.toTypedArray())
+        lineChart.animateX(700)
         lineChart.invalidate()
     }
 }
