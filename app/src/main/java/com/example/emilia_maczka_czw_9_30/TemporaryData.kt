@@ -33,6 +33,8 @@ object TemporaryData {
             return R.drawable.eu
         else if (currencyCode == "HKD")
             return R.drawable.hk
+        else if (currencyCode == "PLN")
+            return R.drawable.pl
         else
             return countries.find { it.currency.code == currencyCode } ?. flagResource ?: World.getWorldFlag()
     }
